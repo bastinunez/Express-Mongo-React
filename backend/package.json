@@ -1,0 +1,14 @@
+{
+  "name": "node-mongodb-app",
+  "version": "1.0.0",
+  "description": "Simple Node.js app with MongoDB integration",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^4.1.0"
+  }
+}
+

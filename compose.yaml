@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  mongo:
+    restart: always
+    build: 
+      context: ./mongo
+      dockerfile: Dockerfile.mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: user
+    expose:
+      - 27017
+    volumes:
+      - ./mongo:/mongo/db
+      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+volumes:
+  mongo-init:
